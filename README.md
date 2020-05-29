@@ -55,17 +55,3 @@ tracker.
 The project also has some limitations as documented on the
 [prolink-go](https://github.com/EvanPurkhiser/prolink-go#limitations-bugs-and-missing-functionality)
 project.
-
-
-### NOTES
-clone that
-run yarn
-`yarn electron-builder install-app-deps`
-then in 3 terminal panes
-yarn start-main-dev
-yarn start-renderer-dev
-and yarn electron dist/main/main.js
-
-### TODO
-
-- Bundle the SF Mono font with the application.

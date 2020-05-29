@@ -13,13 +13,10 @@ import * as url from 'url';
 import {bringOnline} from 'prolink-connect';
 import isDev from 'electron-is-dev';
 
-import connectNetworkStore from 'src/shared/store/network';
+import {Obs} from 'src/obs';
 import {registerMainIpc} from 'src/shared/store/ipc';
+import connectNetworkStore from 'src/shared/store/network';
 import store from 'src/shared/store';
-
-import express = require('express');
-
-const HTTP_PORT = 8080;
 
 // see https://www.electronjs.org/docs/api/app#appallowrendererprocessreuse
 app.allowRendererProcessReuse = true;
@@ -73,10 +70,8 @@ app.on('ready', async () => {
   connectNetworkStore(network);
 
   // Start webserver
-  const index = path.join(__dirname, '../../public');
-  const expressApp = express();
-  expressApp.get('/', (req, res) => { res.send('hi obs'); });
-  expressApp.listen(HTTP_PORT);
+  const obs = Obs.Instance();
+
 });
 
 app.on('window-all-closed', () => {
