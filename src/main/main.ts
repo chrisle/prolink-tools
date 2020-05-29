@@ -17,6 +17,10 @@ import connectNetworkStore from 'src/shared/store/network';
 import {registerMainIpc} from 'src/shared/store/ipc';
 import store from 'src/shared/store';
 
+import express = require('express');
+
+const HTTP_PORT = 8080;
+
 // see https://www.electronjs.org/docs/api/app#appallowrendererprocessreuse
 app.allowRendererProcessReuse = true;
 
@@ -67,6 +71,12 @@ app.on('ready', async () => {
   store.networkState = network.state;
 
   connectNetworkStore(network);
+
+  // Start webserver
+  const index = path.join(__dirname, '../../public');
+  const expressApp = express();
+  expressApp.get('/', (req, res) => { res.send('hi obs'); });
+  expressApp.listen(HTTP_PORT);
 });
 
 app.on('window-all-closed', () => {

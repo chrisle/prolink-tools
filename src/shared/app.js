@@ -53,7 +53,7 @@ CurrentTrack = styled(CurrentTrack)`
 
 let TracksOverlay = observer(p => (
   <div className={p.className}>
-    <CurrentTrack firstPlayed={trackEvents.played.length === 1} track={trackEvents.played[0]} /> 
+    <CurrentTrack firstPlayed={trackEvents.played.length === 1} track={trackEvents.played[0]} />
     <RecentTracks
       tracks={trackEvents.played.slice(1, config.historyCutoff + 1)}
     />
